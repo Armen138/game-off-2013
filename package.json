@@ -1,0 +1,21 @@
+{
+	"name": "GameOff2013",
+	"author": "Armen138",
+	"contributors": [
+		{
+			"name": "Armen138",
+			"homepage": "http://armen138.com"
+		},
+		{
+			"name": "tsa-tse",
+			"homepage": "http://twitter.com/tsa_tse"
+		}
+	],
+	"dependencies": {
+		"1gamlib": "git://github.com/Armen138/1gamlib.git#commonjs",
+        "grunt": "~0.4.1",
+        "grunt-contrib-jshint": "~0.6.0",
+        "grunt-contrib-uglify": "~0.2.2",
+        "grunt-browserify2": "~0.1.8"
+	}
+}

@@ -46,6 +46,7 @@ var Play = function(profile) {
         init: function() {
             play.log.info("Start game.");
             saveProfile(profile);
+            map.centerOn({X: 50, Y: 50});
         },
         clear: function(callback) { callback(); },
         run: function() {

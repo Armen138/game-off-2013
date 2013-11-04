@@ -28,7 +28,7 @@ var Button = function(label, index, options) {
         X: size.width + size.margin,
         Y: from.Y
     };
-    var duration = options.duration || 500;
+    var duration = options.duration || 200;
     /*
      * @alias Button
      */

@@ -293,8 +293,8 @@ var Map = function(tiles) {
         mouseup: function(position, button) {
             map.mouse = screenToTile(position.X, position.Y);
             if(select.active) {
-                var area = getArea(select.start, map.mouse);
-                map.fire("select", area);
+                //var area = getArea(select.start, map.mouse);
+                map.fire("select", select.start);
             }
             drag.active = false;
             select.active = false;

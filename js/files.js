@@ -3,5 +3,6 @@ module.exports = {
     "rock": "images/darkrock_big.png",
     "tile": "images/darktile.png",
     "mouse": "images/darktile.png",
-    "sketch": "images/sketch.png"
+    "sketch": "images/sketch.png",
+    "player": "images/player.png"
 };

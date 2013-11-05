@@ -3,6 +3,8 @@
 var Canvas = require("1gamlib/canvas").Canvas;
 var Map = require("./map");
 var Log = require("./netlog");
+var Unit = require("./unit");
+var astar = require("./astar");
 
 var mapEvents = {
     click: function(mouse) {
@@ -26,6 +28,10 @@ var saveProfile = function(profile) {
 };
 
 var Play = function(profile) {
+    var playerAction = function(mouse) {
+        var path = astar.findPath(tiles, player.tilePosition, mouse);
+        player.path = (path);
+    };
     profile = profile || {};
     var tiles = [];
     for(var x = 0; x < 100; x++) {
@@ -39,8 +45,9 @@ var Play = function(profile) {
         for(var handler in mapEvents) {
             play[handler] = mapEvents[handler];
         }
-        //map.on("select", unitControl.select);
+        map.on("select", playerAction);
     };
+    var player = new Unit(50, 50, 0, map);
     var play = {
         log: new Log({left: 150, top: 0, width: 400, height: 300}),
         init: function() {

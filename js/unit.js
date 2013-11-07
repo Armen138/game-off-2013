@@ -59,6 +59,7 @@ var Unit = function(tileX, tileY, id, map) {
     Events.attach(unit);
     unit.absorb(data);
     unit.absorb({
+        friendly: true,
         size: def.size,
         type: data.name,
         dead: false,
@@ -66,6 +67,11 @@ var Unit = function(tileX, tileY, id, map) {
         path: [],
         range: data.range,
         id: id,
+        action: function() {
+            if(unit.dialog) {
+                unit.fire("dialog", unit.dialog);
+            }
+        },
         position: {
             X: tileX * settings.tileSize,
             Y: tileY * settings.tileSize
@@ -126,6 +132,9 @@ var Unit = function(tileX, tileY, id, map) {
                     var to = unit.path.shift();
                     unit.syncPosition(to, tts);
                     tileTime = now;
+                    if(unit.path.length === 0) {
+                        unit.fire("path-end", unit.tilePosition);
+                    }
                 } else {
                     var p0 = tts(unit.path[0].X, unit.path[0].Y);
                     var p1 = tts(unit.tilePosition.X, unit.tilePosition.Y);

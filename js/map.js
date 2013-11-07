@@ -37,7 +37,7 @@ var Map = function(tiles) {
     };
 
     var screenToTile = function(x, y) {
-        //x += 32;
+        x += 64;
         //y += 16;
         x += map.position.X;
         y += map.position.Y;
@@ -223,32 +223,32 @@ var Map = function(tiles) {
                 };
             if(select.active) {
 
-                    Canvas.context.fillStyle = "rgba(240, 190, 50, 0.5)";
-                    Canvas.context.strokeStyle = "rgba(240, 190, 50, 0.9)";
-                    Canvas.context.lineWidht = 3;
+                    //Canvas.context.fillStyle = "rgba(240, 190, 50, 0.5)";
+                    //Canvas.context.strokeStyle = "rgba(240, 190, 50, 0.9)";
+                    //Canvas.context.lineWidht = 3;
 
-                    var tl = tileToScreen(select.start.X, select.start.Y);
-                    var br = tileToScreen(map.mouse.X, map.mouse.Y);
+                    //var tl = tileToScreen(select.start.X, select.start.Y);
+                    //var br = tileToScreen(map.mouse.X, map.mouse.Y);
 
-                    var w = (br.X - tl.X);
-                    var h = (br.Y - tl.Y);
-                    var t = 0;
-                    if(w < 0) {
-                        t = tl.X;
-                        tl.X = br.X;
-                        br.X = t;
-                        w *= -1;
-                    }
-                    if(h < 0) {
-                        t = tl.Y;
-                        tl.Y = br.Y;
-                        br.Y = t;
-                        h *= -1;
+                    //var w = (br.X - tl.X);
+                    //var h = (br.Y - tl.Y);
+                    //var t = 0;
+                    //if(w < 0) {
+                        //t = tl.X;
+                        //tl.X = br.X;
+                        //br.X = t;
+                        //w *= -1;
+                    //}
+                    //if(h < 0) {
+                        //t = tl.Y;
+                        //tl.Y = br.Y;
+                        //br.Y = t;
+                        //h *= -1;
 
-                    }
-                    Canvas.context.fillRect(tl.X, tl.Y, w, h);
-                    Canvas.context.strokeRect(tl.X, tl.Y, w, h);
-                    areaDebug(select.start, map.mouse);
+                    //}
+                    //Canvas.context.fillRect(tl.X, tl.Y, w, h);
+                    //Canvas.context.strokeRect(tl.X, tl.Y, w, h);
+                    //areaDebug(select.start, map.mouse);
 
                 }
             drawMouse();

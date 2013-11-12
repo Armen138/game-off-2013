@@ -5,7 +5,7 @@ var Resources = require("1gamlib/resources").Resources;
 var Events = require("1gamlib/events").Events;
 var Settings = require("./settings");
 var mouseTile = { X: 0, Y: 0 };
-var tileMap = [ "rock", "tile" ];
+var tileMap = [ "tile", "rock" ];
 var layers = {
     units: [],
     stuff: []
@@ -204,7 +204,9 @@ var Map = function(tiles) {
             for(y = 0; y < tiles.length; y++) {
                 for(x = tiles[0].length - 1; x >= 0; --x) {
                     for(var u in layers.units[x][y]) {
-                        layers.units[x][y][u].draw(tileToScreen);
+                        if(layers.units[x][y][u].draw(tileToScreen)) {
+                            delete layers.units[x][y][u];
+                        }
                     }
                     //if(layers.units[x][y]) {
                         //layers.units[x][y].draw(tileToScreen);

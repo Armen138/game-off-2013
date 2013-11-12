@@ -4,5 +4,7 @@ module.exports = {
     "tile": "images/darktile.png",
     "mouse": "images/mouse.png",
     "sketch": "images/sketch.png",
-    "player": "images/player.png"
+    "player": "images/player.png",
+    "books": "images/books.png",
+    "particle": "images/particle.png"
 };

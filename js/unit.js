@@ -59,6 +59,7 @@ var Unit = function(tileX, tileY, id, map) {
     Events.attach(unit);
     unit.absorb(data);
     unit.absorb({
+        setDefinition: function(definition) { def = definition; },
         friendly: true,
         size: def.size,
         type: data.name,
@@ -67,10 +68,19 @@ var Unit = function(tileX, tileY, id, map) {
         path: [],
         range: data.range,
         id: id,
+        accepts: ["books"],
         action: function() {
             if(unit.dialog) {
                 unit.fire("dialog", unit.dialog);
             }
+        },
+        take: function(item) {
+            for(var i = 0; i < unit.accepts.length; i++) {
+                if(item.name === unit.accepts[i]) {
+                    return true;
+                }
+            }
+            return false;
         },
         position: {
             X: tileX * settings.tileSize,
@@ -190,6 +200,7 @@ var Unit = function(tileX, tileY, id, map) {
             Canvas.context.save();
             render(def, unit.position, unit.angle, def.position);
             Canvas.context.restore();
+            unit.fire("draw", unit.position);
             return unit.dead;
         }
     });

@@ -39,4 +39,5 @@ module.exports = function(grunt) {
     for(var file in files) {
         grunt.file.copy("assets/" + files[file], "bin/" + files[file]);
     }
+    grunt.file.copy("assets/maps/test2.json", "bin/maps/test2.json");
 };

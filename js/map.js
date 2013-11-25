@@ -4,12 +4,29 @@ var Canvas = require("1gamlib/canvas").Canvas;
 var Resources = require("1gamlib/resources").Resources;
 var Events = require("1gamlib/events").Events;
 var Settings = require("./settings");
+var Importer = require("./mapimporter");
 var mouseTile = { X: 0, Y: 0 };
 var tileMap = [ "tile", "rock" ];
+var importer = new Importer();
+
+console.log(importer instanceof Importer);
 var layers = {
     units: [],
     stuff: []
 };
+
+var getMapData = function(file, callback) {
+    var xhr = new XMLHttpRequest();
+    xhr.open("GET", file, true);
+    xhr.onload = function() {
+        var mapData = importer.import(
+                JSON.parse(xhr.responseText)
+                );
+        callback(mapData);
+    };
+    xhr.send(null);
+};
+
 /** @class Map */
 var Map = function(tiles) {
     //init layers
@@ -26,7 +43,8 @@ var Map = function(tiles) {
         var correction = Resources[tile].height - (settings.width / 2);
         Canvas.context.save();
         Canvas.context.translate(p.X, p.Y);
-        Canvas.context.drawImage(Resources[tile], -(settings.width / 2), -(settings.height / 2) - correction);
+        Canvas.context.drawImage(Resources[tile],
+                -(settings.width / 2), -(settings.height / 2) - correction);
         Canvas.context.restore();
     };
     var tileToScreen = function(x, y) {
@@ -170,7 +188,9 @@ var Map = function(tiles) {
             //} else {
                 console.log("mapping unit.");
                 if(unit.lastMapPosition) {
-                    delete layers.units[unit.lastMapPosition.X][unit.lastMapPosition.Y][unit.id]; // = null;
+                    delete  layers.units[unit.lastMapPosition.X]
+                                        [unit.lastMapPosition.Y]
+                                        [unit.id]; // = null;
                 }
                 if(!layers.units[x][y]) {
                     layers.units[x][y] = {};
@@ -189,12 +209,14 @@ var Map = function(tiles) {
                 y = 0;
             for(y = 0; y < tiles.length; y++) {
                 for(x = tiles[0].length - 1; x >= 0; --x) {
-                    var tile = tileMap[tiles[x][y]]; //"pebbles"; //Math.random() < 0.5 ? "box" : "pebbles";
+                    var tile = tileMap[tiles[x][y]];
                     var p = tileToScreen(x, y);
                     var correction = Resources[tile].height - settings.height;
                     Canvas.context.save();
                     Canvas.context.translate(p.X, p.Y);
-                    Canvas.context.drawImage(Resources[tile], -(settings.width / 2), -(settings.height / 2) - correction);
+                    Canvas.context.drawImage(Resources[tile],
+                            -(settings.width / 2),
+                            -(settings.height / 2) - correction);
                     Canvas.context.restore();
                 }
             }
@@ -321,6 +343,9 @@ var Map = function(tiles) {
     Events.attach(map);
     return map;
 };
+getMapData("maps/test2.json", function(data) {
+    console.log(data);
 
+});
 module.exports = Map;
 

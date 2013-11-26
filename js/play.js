@@ -165,13 +165,14 @@ var Play = function(profile) {
     };
     profile = profile || {};
     var tiles = [];
-    for(var x = 0; x < 100; x++) {
-        tiles[x] = [];
-        for(var y = 0; y < 100; y++) {
-            tiles[x][y] = Math.random() < 0.5 ? 0 : 1;
-        }
-    }
-    var map = new Map(tiles);
+    //for(var x = 0; x < 100; x++) {
+        //tiles[x] = [];
+        //for(var y = 0; y < 100; y++) {
+            //tiles[x][y] = Math.random() < 0.5 ? 0 : 1;
+        //}
+    //}
+    var map = new Map();
+    map.load("test2");
     var attachMapEvents = function() {
         //for(var handler in mapEvents) {
             //play[handler] = mapEvents[handler];

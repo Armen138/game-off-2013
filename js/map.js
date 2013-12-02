@@ -46,7 +46,7 @@ var Map = function() {
     }
 
     var drawMouse = function() {
-        var tile = "mouse"; //Math.random() < 0.5 ? "box" : "pebbles";
+        var tile = "mouse";
 
         var p = tileToScreen(map.mouse.X, map.mouse.Y);
         var correction = Resources[tile].height - (settings.width / 2);
@@ -316,9 +316,5 @@ var Map = function() {
     Events.attach(map);
     return map;
 };
-//getMapData("maps/test2.json", function(data) {
-    //console.log(data);
-
-//});
 module.exports = Map;
 

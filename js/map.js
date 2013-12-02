@@ -250,51 +250,8 @@ var Map = function() {
                             delete layers.units[x][y][u];
                         }
                     }
-                    //if(layers.units[x][y]) {
-                        //layers.units[x][y].draw(tileToScreen);
-                    //}
                 }
             }
-            //for(var c in clients) {
-                //clients[c].draw(tileToScreen);
-            //}
-
-                var area = {
-                    X:      select.start.X,
-                    Y:      select.start.Y,
-                    width:  map.mouse.X - select.start.X,
-                    height: map.mouse.Y - select.start.Y
-                };
-            if(select.active) {
-
-                    //Canvas.context.fillStyle = "rgba(240, 190, 50, 0.5)";
-                    //Canvas.context.strokeStyle = "rgba(240, 190, 50, 0.9)";
-                    //Canvas.context.lineWidht = 3;
-
-                    //var tl = tileToScreen(select.start.X, select.start.Y);
-                    //var br = tileToScreen(map.mouse.X, map.mouse.Y);
-
-                    //var w = (br.X - tl.X);
-                    //var h = (br.Y - tl.Y);
-                    //var t = 0;
-                    //if(w < 0) {
-                        //t = tl.X;
-                        //tl.X = br.X;
-                        //br.X = t;
-                        //w *= -1;
-                    //}
-                    //if(h < 0) {
-                        //t = tl.Y;
-                        //tl.Y = br.Y;
-                        //br.Y = t;
-                        //h *= -1;
-
-                    //}
-                    //Canvas.context.fillRect(tl.X, tl.Y, w, h);
-                    //Canvas.context.strokeRect(tl.X, tl.Y, w, h);
-                    //areaDebug(select.start, map.mouse);
-
-                }
             drawMouse();
             Canvas.context.restore();
             map.fire("draw");

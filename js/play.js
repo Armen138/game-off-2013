@@ -159,7 +159,7 @@ var Play = function(profile) {
             }
         }
         if(walk) {
-            var path = astar.findPath(tiles, player.tilePosition, mouse);
+            var path = astar.findPath(map.collisionMap, player.tilePosition, mouse);
             player.path = (path);
         }
     };

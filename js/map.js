@@ -173,6 +173,7 @@ var Map = function() {
     };
     /** @alias Map */
     var map = {
+        collsionMap: [],
         mouse: {},
         scrollSpeed: {X: 0, Y: 0},
         scale: { X: 1, Y: 1 },
@@ -184,6 +185,7 @@ var Map = function() {
             getMapData("maps/" + name + ".json", function(data) {
                 console.log(data);
                 tiles = data;
+                map.collisionMap = data;
             });
         },
         layers: function() {

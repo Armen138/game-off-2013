@@ -196,23 +196,17 @@ var Map = function() {
             return null;
         },
         unitToMap: function(unit, x, y) {
-            //if(layers.units[x][y] && layers.units[x][y] !== unit) {
-                //console.log(layers.units[x][y]);
-                //console.log("not mapping unit.");
-                //return false;
-            //} else {
-                console.log("mapping unit.");
-                if(unit.lastMapPosition) {
-                    delete  layers.units[unit.lastMapPosition.X]
-                                        [unit.lastMapPosition.Y]
-                                        [unit.id]; // = null;
-                }
-                if(!layers.units[x][y]) {
-                    layers.units[x][y] = {};
-                }
-                layers.units[x][y][unit.id] = unit;
-                unit.lastMapPosition = {X: x, Y: y};
-            //}
+            console.log("mapping unit.");
+            if(unit.lastMapPosition) {
+                delete  layers.units[unit.lastMapPosition.X]
+                                    [unit.lastMapPosition.Y]
+                                    [unit.id]; // = null;
+            }
+            if(!layers.units[x][y]) {
+                layers.units[x][y] = {};
+            }
+            layers.units[x][y][unit.id] = unit;
+            unit.lastMapPosition = {X: x, Y: y};
             return true;
         },
         /**  draw */
